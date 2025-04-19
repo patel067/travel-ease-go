@@ -1,13 +1,21 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { LandingPage } from "@/components/home/LandingPage";
+import { MainLayout } from "@/components/layout/MainLayout";
 
 const Index = () => {
+  // Check if user is logged in
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const userType = localStorage.getItem("userType") || "rider";
+  const userName = localStorage.getItem("userName") || "Guest User";
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <MainLayout 
+      isAuthenticated={isAuthenticated}
+      userType={userType as 'rider' | 'driver' | 'admin'}
+      userName={userName}
+    >
+      <LandingPage />
+    </MainLayout>
   );
 };
 
